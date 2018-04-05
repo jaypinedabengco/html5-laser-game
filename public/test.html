@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Drag and drop the shapes</title>
+
+	<script src="js/libraries/EaselJS_0-min.js"></script>
+	
+	<!--Game Objects-->
+	<script src="js/objects/LaserImageObjectsLib.js"></script> 
+	<script src="js/objects/LaserGunBitmap.js"></script>
+	<script src="js/objects/LaserPointerBitmap.js"></script>
+	<script src="js/objects/TargetPointBitmap.js"></script>
+	<script src="js/objects/LaserGunBitmap.js"></script>
+	
+	<!--Containers -->
+	<script src="js/objects/LaserGunContainer.js"></script>
+	
+	<!--Factories-->
+	<script src="js/objects/LaserGunFactory.js"></script> 
+	<script src="js/objects/TargetPointFactory.js"></script> 
+	
+<script>
+	function init(){
+		
+		var str = "{0;185;268|0;185;186|0;136;327|0;136;130|0;093;226|0;093;187|1;099;036|1;022;036|1;059;105|3;002;000|3;001;002|3;000;001}";
+		
+		str = str.replace('{', '');
+		str = str.replace('}', '');
+		
+		var strSplit = str.split('|');
+		
+		
+		
+		var levelMapObject = {};
+			levelMapObject.targetPoints = new Array();
+			levelMapObject.laserGuns = new Array();
+			levelMapObject.laserConnections = new Array();
+		
+		for ( x in strSplit ) {
+			
+			var lvlInfo = strSplit[x].split(";");
+			
+			var lvlObject = {};
+			
+			if ( lvlInfo[0] == 0 ){ //target points
+			
+				lvlObject.x = lvlInfo[1];
+				lvlObject.y = lvlInfo[2];
+				
+				levelMapObject.targetPoints.push(lvlObject);
+				
+			} else if ( lvlInfo[0] == 1 ) { //laser guns
+				
+				lvlObject.x = lvlInfo[1];
+				lvlObject.y = lvlInfo[2];
+				
+				levelMapObject.laserGuns.push(lvlObject);
+				
+			} else if ( lvlInfo[0] == 3 ) { // laser gun connections
+			
+				lvlObject.connectFrom 	= 	lvlInfo[1];
+				lvlObject.connectTo		=	lvlInfo[2];
+				levelMapObject.laserConnections.push(lvlObject);
+			} else {
+				throw 'something very wrong happened here';
+			}
+		
+		} 
+		
+		console.log(strSplit);
+		console.log(str);
+		console.log(levelMapObject);
+		
+	}
+</script>
+  
+</head>
+  
+<body onload="init()">  
+ <canvas id="canvas" width="640" height="480"></canvas> 
+</body>
+</html> 
