@@ -1,0 +1,134 @@
+<html>
+<head>
+	<style>
+		#mainCanvas{
+			border-color : black;
+			border-style : solid;
+		}
+	</style>
+	<script src="js/libraries/EaselJS_0-min.js"></script>
+	
+	<!--Game Objects-->
+	<script src="js/objects/LaserImageObjectsLib.js"></script> 
+	<script src="js/objects/LaserGunBitmap.js"></script>
+	<script src="js/objects/LaserPointerBitmap.js"></script>
+	<script src="js/objects/TargetPointBitmap.js"></script>
+	<script src="js/objects/LaserGunBitmap.js"></script>
+	<script src="js/objects/LevelData.js"></script>
+	<script src="js/objects/LevelInformation.js"></script>
+	
+	<!--Containers -->
+	<script src="js/objects/LaserGunContainer.js"></script>
+	
+	<!--Factories-->
+	<script src="js/objects/LaserGunFactory.js"></script> 
+	<script src="js/objects/TargetPointFactory.js"></script> 
+	
+	<!--Collision Engine-->
+	<script src="js/objects/LaserCollisionEngine.js"></script>
+	
+	<!-- Lasers Main JS -->
+	<script src="js/LasersGame.js"></script>
+	<script>
+	
+		window.onload = init;
+		function init(){
+			LasersGame.init();
+			
+			var selectLevel = document.getElementById('selectLevel');
+
+			for ( var i = 1 ; i <= 50; i++ ){
+			
+				var opt = document.createElement('option');
+					opt.value=i;
+					opt.text=i;
+				selectLevel.add(opt, null);
+			}
+			
+
+			var level = 1;
+			
+			selectLevel.addEventListener('change', function(e){
+				console.log( typeof this.value );
+				LasersGame.tempChangeLevel(parseInt(this.value));
+			});
+			
+			solution.addEventListener('click', function(e){
+				LasersGame.tempShowSolution(parseInt(selectLevel.value));
+			});
+			
+			
+		}
+		
+		/*var stage;
+		window.onload = init;
+
+		function init(){
+			stage = new createjs.Stage('mainCanvas');
+			
+			*/
+			//var background = new Image();
+			//var	l_gun =	new Image();
+			
+			//add children
+			//background.src 	= LasersCommons.IMG_LOCATION + "background_xna.png";
+			//l_gun.src		= LasersCommons.IMG_LOCATION + "point_movable3_blue.png";
+			
+			//background
+			/*background.onload = function(){
+				stage.addChild(new createjs.Bitmap(background));
+				stage.update();
+			}
+			*/
+			/*l_gun.onload = function(){
+			
+				var gun_container_1 = new LaserGunContainer(l_gun, stage);
+				var gun_container_2 = new LaserGunContainer(l_gun, stage, 100,800);
+				var gun_container_3 = new LaserGunContainer(l_gun, stage, 200,700);
+				var gun_container_4 = new LaserGunContainer(l_gun, stage, 300,600);
+				var gun_container_5 = new LaserGunContainer(l_gun, stage, 400,500);
+				var gun_container_6 = new LaserGunContainer(l_gun, stage, 500,400);
+				var gun_container_7 = new LaserGunContainer(l_gun, stage, 600,300);
+				var gun_container_8 = new LaserGunContainer(l_gun, stage, 700,200);
+				var gun_container_9 = new LaserGunContainer(l_gun, stage, 800,100);
+					
+				stage.addChild(gun_container_1);
+				stage.addChild(gun_container_2);
+				stage.addChild(gun_container_3);
+				stage.addChild(gun_container_4);
+				stage.addChild(gun_container_5);
+				stage.addChild(gun_container_6);
+				stage.addChild(gun_container_7);
+				stage.addChild(gun_container_8);
+				stage.addChild(gun_container_9);
+
+				stage.update();
+				
+				gun_container_1.connectTo(gun_container_2);
+				gun_container_2.connectTo(gun_container_3);
+				gun_container_3.connectTo(gun_container_4);
+				gun_container_4.connectTo(gun_container_5);
+				gun_container_5.connectTo(gun_container_6);
+				gun_container_6.connectTo(gun_container_7);
+				gun_container_7.connectTo(gun_container_8);
+				gun_container_8.connectTo(gun_container_9);
+				gun_container_9.connectTo(gun_container_1);
+				gun_container_1.connectTo(gun_container_2);
+				gun_container_1.connectTo(gun_container_3);
+				gun_container_1.connectTo(gun_container_4);
+				
+				stage.update();
+			} */
+	
+		
+	</script>
+</head>
+<body>
+	Select Level : <select id="selectLevel" ></select>
+		<input type="button" value="show Solution" id="solution"/>
+		
+		<canvas id="mainCanvas" width="1024" height="768"></canvas>
+		<h1 id="testGameComplete"></h1>
+		
+</body>
+</html>

@@ -1,0 +1,31 @@
+Lasers Class Plan
+
+	Public methods : 
+		* init() : prepare game.
+				- create "Stage" object for internal use
+				- get Resources ( N/A )
+				- set global Resources ( N/A )
+				- do initial testing here.. (temporary)
+		
+		* go to Level(int)
+				- check if level selected is already open, based on browser storage.
+				- close select panels.
+				- use populateCanvas(jsonObject).
+				- exception handling
+	
+	Private methods :
+		* populateCanvas(jsonObject) throws exception : 
+				- Integrate addLaserGuns() and addTargetPoints based on jsonObject
+				- throws exception
+		
+		* addLaserGuns(jsonObject)	throws exception :
+				- create lasers guns logic
+				- preload images ( temp )
+				- add to canvas
+		* addTargetPoints(jsonObject)	:
+				- under construction
+		
+	
+			
+				
+				
