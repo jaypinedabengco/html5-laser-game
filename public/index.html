@@ -1,86 +1,103 @@
 <html>
-<head>
-	<style>
-		#mainCanvas{
-			border-color : black;
-			border-style : solid;
-		}
-	</style>
-	<script src="js/libraries/EaselJS_0-min.js"></script>
-	
-	<!--Game Objects-->
-	<script src="js/objects/LaserImageObjectsLib.js"></script> 
-	<script src="js/objects/LaserGunBitmap.js"></script>
-	<script src="js/objects/LaserPointerBitmap.js"></script>
-	<script src="js/objects/TargetPointBitmap.js"></script>
-	<script src="js/objects/LaserGunBitmap.js"></script>
-	<script src="js/objects/LevelData.js"></script>
-	<script src="js/objects/LevelInformation.js"></script>
-	
-	<!--Containers -->
-	<script src="js/objects/LaserGunContainer.js"></script>
-	
-	<!--Factories-->
-	<script src="js/objects/LaserGunFactory.js"></script> 
-	<script src="js/objects/TargetPointFactory.js"></script> 
-	
-	<!--Collision Engine-->
-	<script src="js/objects/LaserCollisionEngine.js"></script>
-	
-	<!-- Lasers Main JS -->
-	<script src="js/LasersGame.js"></script>
-	<script>
-	
-		window.onload = init;
-		function init(){
-			LasersGame.init();
-			
-			var selectLevel = document.getElementById('selectLevel');
+  <head>
+    <style>
+      #mainCanvas {
+        border-color: black;
+        border-style: solid;
+      }
 
-			for ( var i = 1 ; i <= 50; i++ ){
-			
-				var opt = document.createElement('option');
-					opt.value=i;
-					opt.text=i;
-				selectLevel.add(opt, null);
-			}
-			
+      #testGameComplete {
+        display: none;
+      }
 
-			var level = 1;
-			
-			selectLevel.addEventListener('change', function(e){
-				console.log( typeof this.value );
-				LasersGame.tempChangeLevel(parseInt(this.value));
-			});
-			
-			solution.addEventListener('click', function(e){
-				LasersGame.tempShowSolution(parseInt(selectLevel.value));
-			});
-			
-			
-		}
-		
-		/*var stage;
+      #toolsContainer.success #testGameComplete {
+        display: block;
+        width: 930px;
+        position: absolute;
+        top: 47px;
+        /* left: 30%; */
+        font-size: 30px;
+        color: white;
+        background-color: green;
+        padding: 50px;
+      }
+
+      #toolsContainer.success #solution {
+        display: none;
+      }
+    </style>
+    <script src="js/libraries/EaselJS_0-min.js"></script>
+
+    <!--Game Objects-->
+    <script src="js/objects/LaserImageObjectsLib.js"></script>
+    <script src="js/objects/LaserGunBitmap.js"></script>
+    <script src="js/objects/LaserPointerBitmap.js"></script>
+    <script src="js/objects/TargetPointBitmap.js"></script>
+    <script src="js/objects/LaserGunBitmap.js"></script>
+    <script src="js/objects/LevelData.js"></script>
+    <script src="js/objects/LevelInformation.js"></script>
+
+    <!--Containers -->
+    <script src="js/objects/LaserGunContainer.js"></script>
+
+    <!--Factories-->
+    <script src="js/objects/LaserGunFactory.js"></script>
+    <script src="js/objects/TargetPointFactory.js"></script>
+
+    <!--Collision Engine-->
+    <script src="js/objects/LaserCollisionEngine.js"></script>
+
+    <!-- Lasers Main JS -->
+    <script src="js/LasersGame.js"></script>
+    <script>
+      window.onload = init;
+      function init() {
+        LasersGame.init();
+
+        var selectLevel = document.getElementById("selectLevel");
+
+        for (var i = 1; i <= 50; i++) {
+          var opt = document.createElement("option");
+          opt.value = i;
+          opt.text = i;
+          selectLevel.add(opt, null);
+        }
+
+        var level = 1;
+
+        selectLevel.addEventListener("change", function(e) {
+          console.log(typeof this.value);
+          // remove if has success
+          document.getElementById("toolsContainer").classList.remove("success");
+          LasersGame.tempChangeLevel(parseInt(this.value));
+        });
+
+        solution.addEventListener("click", function(e) {
+          LasersGame.tempShowSolution(parseInt(selectLevel.value));
+        });
+      }
+
+      /*var stage;
 		window.onload = init;
 
 		function init(){
 			stage = new createjs.Stage('mainCanvas');
 			
 			*/
-			//var background = new Image();
-			//var	l_gun =	new Image();
-			
-			//add children
-			//background.src 	= LasersCommons.IMG_LOCATION + "background_xna.png";
-			//l_gun.src		= LasersCommons.IMG_LOCATION + "point_movable3_blue.png";
-			
-			//background
-			/*background.onload = function(){
+      //var background = new Image();
+      //var	l_gun =	new Image();
+
+      //add children
+      //background.src 	= LasersCommons.IMG_LOCATION + "background_xna.png";
+      //l_gun.src		= LasersCommons.IMG_LOCATION + "point_movable3_blue.png";
+
+      //background
+      /*background.onload = function(){
 				stage.addChild(new createjs.Bitmap(background));
 				stage.update();
 			}
 			*/
-			/*l_gun.onload = function(){
+      /*l_gun.onload = function(){
 			
 				var gun_container_1 = new LaserGunContainer(l_gun, stage);
 				var gun_container_2 = new LaserGunContainer(l_gun, stage, 100,800);
@@ -119,16 +136,20 @@
 				
 				stage.update();
 			} */
-	
-		
-	</script>
-</head>
-<body>
-	Select Level : <select id="selectLevel" ></select>
-		<input type="button" value="show Solution" id="solution"/>
-		
-		<canvas id="mainCanvas" width="1024" height="768"></canvas>
-		<h1 id="testGameComplete"></h1>
-		
-</body>
+    </script>
+  </head>
+  <body>
+    <div id="toolsContainer">
+      <div id="testGameComplete">
+        Success!!!!!!!!!!!! Wohhhhhhh!!!! yeah!!!!!!!!!!!!!!
+      </div>
+      <div style="padding: 10px;">
+        Select Level :
+        <select id="selectLevel"></select>
+        <input type="button" value="show Solution" id="solution" />
+      </div>
+    </div>
+
+    <canvas id="mainCanvas" width="1024" height="768"></canvas>
+  </body>
 </html>
