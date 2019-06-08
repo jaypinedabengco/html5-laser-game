@@ -212,10 +212,9 @@
 		var testGameComplete = document.getElementById('testGameComplete');
 		if ( evt.target.laserCollisionEngine.isAllTargetOn()){
 			console.log('game complete');
-			// testGameComplete.innerHTML  = "Success!!!!!!!!!!!! Wohhhhhhh!!!! yeah!!!!!!!!!!!!!!";
-			alert('Success!');
+			testGameComplete.innerHTML  = "Success!!!!!!!!!!!! Wohhhhhhh!!!! yeah!!!!!!!!!!!!!!";
 		} else {
-			// testGameComplete.innerHTML  = "";
+			testGameComplete.innerHTML  = "";
 		}
 			
 		
